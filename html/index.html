@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rd-coordsmanager | RoxDev</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="overlay" class="hidden">
+    <div id="panel">
+
+        
+        <div class="panel-header">
+            <div class="header-left">
+                <img src="logo.png" class="hex-icon" alt="RoxDev Logo" />
+                <div>
+                    <span class="brand-rox">Rox</span><span class="brand-dev">Dev</span>
+                    <div class="brand-sub">Coords Manager</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <span id="coord-count" class="count-badge">0 saved</span>
+                <button class="icon-btn" id="btn-refresh" title="Refresh">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                </button>
+                <button class="icon-btn" id="btn-close" title="Close (ESC)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+
+        
+        <div class="take-bar">
+            <div class="coord-preview" id="coord-preview">
+                <span class="preview-label">X</span><span id="prev-x" class="preview-val">—</span>
+                <span class="preview-label">Y</span><span id="prev-y" class="preview-val">—</span>
+                <span class="preview-label">Z</span><span id="prev-z" class="preview-val">—</span>
+                <span class="preview-label">H</span><span id="prev-h" class="preview-val">—</span>
+            </div>
+            <button class="btn-primary" id="btn-take">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+                Take Coord
+            </button>
+        </div>
+
+        
+        <div class="save-row hidden" id="save-row">
+            <input type="text" id="coord-name" class="name-input" placeholder="Name this coord…" maxlength="60" />
+            <button class="btn-save" id="btn-save">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Save
+            </button>
+        </div>
+
+        
+        <div class="search-row">
+            <div class="search-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="search-input" class="search-input" placeholder="Search coords…" />
+            </div>
+            <select id="fmt-select" class="fmt-select" title="Copy format"></select>
+        </div>
+
+        
+        <div class="list-wrap">
+            <div id="coords-list" class="coords-list">
+                <div class="empty-state" id="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <p>No coords saved yet.</p>
+                    <span>Press <kbd>Take Coord</kbd> to capture your first position.</span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel-footer">
+            <span>rd-coordsmanager</span>
+            <span class="footer-sep">·</span>
+            <a class="footer-brand" href="#">RoxDev</a>
+            <span class="footer-sep">·</span>
+            <span>v1.0.0</span>
+        </div>
+    </div>
+</div>
+
+<div id="modal-rename" class="modal hidden">
+    <div class="modal-box">
+        <div class="modal-title">Rename Coord</div>
+        <input type="text" id="rename-input" class="name-input" placeholder="New name…" maxlength="60" />
+        <div class="modal-actions">
+            <button class="btn-ghost" id="rename-cancel">Cancel</button>
+            <button class="btn-primary" id="rename-confirm">Rename</button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-delete" class="modal hidden">
+    <div class="modal-box">
+        <div class="modal-title">Delete Coord</div>
+        <p class="modal-body">Are you sure you want to delete <strong id="delete-name"></strong>?<br>This cannot be undone.</p>
+        <div class="modal-actions">
+            <button class="btn-ghost" id="delete-cancel">Cancel</button>
+            <button class="btn-danger" id="delete-confirm">Delete</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
